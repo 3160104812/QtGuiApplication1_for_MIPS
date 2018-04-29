@@ -36,9 +36,6 @@
     <ClCompile Include="notepad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="txt_handle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="asm_func.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -74,9 +71,6 @@
     <ResourceCompile Include="Notepad.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="txt_handle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ASM.h">
       <Filter>Header Files</Filter>
     </ClInclude>

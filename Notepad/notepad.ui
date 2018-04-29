@@ -70,7 +70,7 @@
         <item>
          <widget class="QPushButton" name="pushButton_3">
           <property name="text">
-           <string>InportCode</string>
+           <string>ImportCode</string>
           </property>
          </widget>
         </item>

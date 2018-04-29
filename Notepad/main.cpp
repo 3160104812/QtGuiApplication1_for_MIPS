@@ -1,5 +1,4 @@
 #include "notepad.h"
-#include "txt_handle.h"
 #include <QtWidgets/QApplication>
 
 int main(int argc, char *argv[])

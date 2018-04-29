@@ -120,7 +120,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="notepad.cpp" />
     <ClCompile Include="top.cpp" />
-    <ClCompile Include="txt_handle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="notepad.h" />
@@ -140,7 +139,6 @@
     <ClInclude Include="ASM.h" />
     <ClInclude Include="DIS.h" />
     <ClInclude Include="top.h" />
-    <ClInclude Include="txt_handle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

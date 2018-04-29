@@ -1,7 +1,9 @@
-bne $s3,$s4,-4  
+bne $s3,$s4,-4  #fenzhi
 lw $s1,-3($s3)
 addi $s0,$s1,-13  
+
 bne $s3,$s4,Else  
+
 j Exit       	 
 j 128
 Else:

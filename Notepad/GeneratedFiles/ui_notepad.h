@@ -27,6 +27,7 @@
 #include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -40,19 +41,24 @@ public:
     QAction *actionsave_as;
     QAction *actionopen;
     QWidget *centralWidget;
-    QGridLayout *gridLayout;
+    QGridLayout *gridLayout_2;
     QHBoxLayout *horizontalLayout;
     QTextEdit *textEdit;
     QTextBrowser *textBrowser;
     QHBoxLayout *horizontalLayout_5;
+    QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_3;
     QLabel *label;
     QSlider *size_edit;
     QPushButton *pushButton_3;
+    QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout_4;
     QLabel *label_2;
     QSlider *size_browser;
+    QGridLayout *gridLayout;
+    QPushButton *pushButton_4;
     QPushButton *pushButton_2;
+    QSpacerItem *verticalSpacer;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton;
     QSpacerItem *horizontalSpacer;
@@ -60,7 +66,6 @@ public:
     QLabel *mode;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *change_mode;
-    QSpacerItem *verticalSpacer;
     QMenuBar *menuBar;
     QMenu *menuEdit;
     QMenu *menuFile;
@@ -71,7 +76,7 @@ public:
     {
         if (NotepadClass->objectName().isEmpty())
             NotepadClass->setObjectName(QStringLiteral("NotepadClass"));
-        NotepadClass->resize(884, 606);
+        NotepadClass->resize(1000, 781);
         actionassembler = new QAction(NotepadClass);
         actionassembler->setObjectName(QStringLiteral("actionassembler"));
         QIcon icon;
@@ -91,10 +96,10 @@ public:
         actionopen->setIcon(icon);
         centralWidget = new QWidget(NotepadClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        gridLayout = new QGridLayout(centralWidget);
-        gridLayout->setSpacing(6);
-        gridLayout->setContentsMargins(11, 11, 11, 11);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout_2 = new QGridLayout(centralWidget);
+        gridLayout_2->setSpacing(6);
+        gridLayout_2->setContentsMargins(11, 11, 11, 11);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
@@ -110,11 +115,14 @@ public:
         horizontalLayout->addWidget(textBrowser);
 
 
-        gridLayout->addLayout(horizontalLayout, 0, 0, 1, 2);
+        gridLayout_2->addLayout(horizontalLayout, 0, 0, 1, 1);
 
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setSpacing(6);
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setSpacing(6);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setSpacing(6);
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
@@ -132,14 +140,20 @@ public:
 
         horizontalLayout_3->addWidget(size_edit);
 
+
+        verticalLayout->addLayout(horizontalLayout_3);
+
         pushButton_3 = new QPushButton(centralWidget);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
 
-        horizontalLayout_3->addWidget(pushButton_3);
+        verticalLayout->addWidget(pushButton_3);
 
 
-        horizontalLayout_5->addLayout(horizontalLayout_3);
+        horizontalLayout_5->addLayout(verticalLayout);
 
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
@@ -157,16 +171,34 @@ public:
 
         horizontalLayout_4->addWidget(size_browser);
 
+
+        verticalLayout_2->addLayout(horizontalLayout_4);
+
+        gridLayout = new QGridLayout();
+        gridLayout->setSpacing(6);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        pushButton_4 = new QPushButton(centralWidget);
+        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+
+        gridLayout->addWidget(pushButton_4, 0, 0, 1, 1);
+
         pushButton_2 = new QPushButton(centralWidget);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
 
-        horizontalLayout_4->addWidget(pushButton_2);
+        gridLayout->addWidget(pushButton_2, 0, 1, 1, 1);
 
 
-        horizontalLayout_5->addLayout(horizontalLayout_4);
+        verticalLayout_2->addLayout(gridLayout);
 
 
-        gridLayout->addLayout(horizontalLayout_5, 1, 1, 1, 1);
+        horizontalLayout_5->addLayout(verticalLayout_2);
+
+
+        gridLayout_2->addLayout(horizontalLayout_5, 1, 0, 1, 1);
+
+        verticalSpacer = new QSpacerItem(20, 25, QSizePolicy::Minimum, QSizePolicy::Fixed);
+
+        gridLayout_2->addItem(verticalSpacer, 2, 0, 1, 1);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
@@ -200,16 +232,12 @@ public:
         horizontalLayout_2->addWidget(change_mode);
 
 
-        gridLayout->addLayout(horizontalLayout_2, 4, 0, 1, 2);
-
-        verticalSpacer = new QSpacerItem(20, 25, QSizePolicy::Minimum, QSizePolicy::Fixed);
-
-        gridLayout->addItem(verticalSpacer, 3, 1, 1, 1);
+        gridLayout_2->addLayout(horizontalLayout_2, 3, 0, 1, 1);
 
         NotepadClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(NotepadClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 884, 26));
+        menuBar->setGeometry(QRect(0, 0, 1000, 26));
         menuEdit = new QMenu(menuBar);
         menuEdit->setObjectName(QStringLiteral("menuEdit"));
         menuFile = new QMenu(menuBar);
@@ -242,7 +270,8 @@ public:
         QObject::connect(size_edit, SIGNAL(valueChanged(int)), NotepadClass, SLOT(change_fontsize_edit()));
         QObject::connect(size_browser, SIGNAL(valueChanged(int)), NotepadClass, SLOT(change_fontsize_browser()));
         QObject::connect(pushButton_3, SIGNAL(clicked()), NotepadClass, SLOT(open_called()));
-        QObject::connect(pushButton_2, SIGNAL(clicked()), NotepadClass, SLOT(export_called()));
+        QObject::connect(pushButton_2, SIGNAL(clicked()), NotepadClass, SLOT(export_bin_called()));
+        QObject::connect(pushButton_4, SIGNAL(clicked()), NotepadClass, SLOT(export_coe_called()));
 
         QMetaObject::connectSlotsByName(NotepadClass);
     } // setupUi
@@ -273,9 +302,10 @@ public:
         textEdit->setPlaceholderText(QApplication::translate("NotepadClass", "Code......", nullptr));
         textBrowser->setPlaceholderText(QApplication::translate("NotepadClass", "Waiting......", nullptr));
         label->setText(QApplication::translate("NotepadClass", "FontSize", nullptr));
-        pushButton_3->setText(QApplication::translate("NotepadClass", "InportCode", nullptr));
+        pushButton_3->setText(QApplication::translate("NotepadClass", "ImportCode", nullptr));
         label_2->setText(QApplication::translate("NotepadClass", "FontSize", nullptr));
-        pushButton_2->setText(QApplication::translate("NotepadClass", "ExportResult", nullptr));
+        pushButton_4->setText(QApplication::translate("NotepadClass", "coe", nullptr));
+        pushButton_2->setText(QApplication::translate("NotepadClass", "bin", nullptr));
         pushButton->setText(QApplication::translate("NotepadClass", "go->", nullptr));
         mode_lable->setText(QApplication::translate("NotepadClass", "mode:", nullptr));
         mode->setText(QApplication::translate("NotepadClass", "assemble", nullptr));

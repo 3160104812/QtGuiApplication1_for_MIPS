@@ -19,12 +19,11 @@ void assembler::get_current_file_path()
 	{
 		s = s + c;
 		// 字符串里\需要转义 碰到\就多加一个\在结尾
-		if (c == '\\')
-			s = s + "\\";
+		        if(c == '\\')
+		           s = s+ "\\";
 		i++;
 		c = path[i];
 	}
-	//    cout << s;
 	current_file_path = s;
 	//    cout << "get path successfully!" << endl;
 }
@@ -61,7 +60,7 @@ int assembler::text_processing()
 	while (getline(infile, line))
 	{
 		new_line = this->remove_comment(line);
-		if (!new_line.empty() || new_line == "illegal character") // 语法错误
+		if (new_line == "illegal character") // 语法错误 new_line.empty() ||
 		{
 			state_out = "illegal character";
 			return -1;
@@ -88,7 +87,7 @@ string assembler::remove_comment(string line)
 	}
 	// 整行注释
 	std::regex re_all_comment1("[\\s]*#.*");
-	std::regex re_all_comment2("#.*");
+	//    std::regex re_all_comment2("#.*");
 	//    if(regex_match(line, re_all_comment1) == 1 || regex_match(line, re_all_comment2) == 1 )
 	if (regex_match(line, re_all_comment1) == 1)
 	{
@@ -96,8 +95,8 @@ string assembler::remove_comment(string line)
 		return ret_s;
 	}
 	// 正常带注释的语句的处理
-	std::regex re1("\\s*([a-zA-Z0-9,\\$\\(\\)\\s]+)#.*");   // 去掉顶头空格和所有注释
-	std::regex re2("\\s*([a-zA-Z0-9,\\$\\(\\)\\s]+)");      // 不带注释的语句 不带":" 去掉顶头空格
+	std::regex re1("\\s*([a-zA-Z0-9,\\$\\(\\)\\s-]+)#.*");   // 去掉顶头空格和所有注释
+	std::regex re2("\\s*([a-zA-Z0-9,\\$\\(\\)\\s-]+)");      // 不带注释的语句 不带":" 去掉顶头空格
 	std::regex re3("\\s*([a-zA-Z0-9]+:)\\s*");    // 带：的语句 即类似于main：这样的语句只能由英文字母和数字组成
 
 	if (regex_match(line, re1) == 1)
@@ -371,12 +370,11 @@ string assembler::asm_B(string line)
 	string rs, rt, addr, addr_binary, tmp_s, reg;
 	int pc, tmp;
 	std::smatch sm;
-	std::regex re_num("[a-z]+[\\s]+\\$([a-z0-9]+)[\\s,]*\\$([a-z0-9]+)[\\s,]*([0-9]+)[\\s]*");
+	std::regex re_num("[a-z]+[\\s]+\\$([a-z0-9]+)[\\s,]*\\$([a-z0-9]+)[\\s,]*([-]*[0-9]+)[\\s]*");
 	std::regex re_label("[a-z]+[\\s]+\\$([a-z0-9]+)[\\s,]*\\$([a-z0-9]+)[\\s,]*([a-zA-Z0-9]+)[\\s]*");
 
 	// 直接寻址 纯数字
-	if (regex_match(line, re_num) == 1)
-	{
+	if (regex_match(line, re_num) == 1) {
 		regex_search(line, sm, re_num);
 		rs = sm[1];
 		rt = sm[2];
@@ -391,6 +389,10 @@ string assembler::asm_B(string line)
 		ss >> tmp;
 		// 字寻址 例如j 10000代表着去pc为10000的地方，26位长的imm放2500.在编译的时候 是吧26位乘以四当做pc跳转
 		tmp = tmp / 4;
+		if (addr[0] == '-') // 如果这个addr为负数 则要根据补码的规则转换一下 在进行进制转换
+		{
+			tmp = 65536 + tmp;// num_2 = 2^16 - |num| = 2^16 + num;
+		}
 		// 数字转字符串
 		stringstream aa;
 		aa << tmp;
