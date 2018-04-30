@@ -30,6 +30,7 @@ Notepad::Notepad(QWidget *parent)
 bool Notepad::open_called()
 {
 	QString filename = QFileDialog::getOpenFileName(this, "open the file");
+	QString title_tmp = filename;
 	
 	std::string str = import_to_txt(filename.toStdString());
 	if (str == "Wrong file format!")
@@ -45,7 +46,7 @@ bool Notepad::open_called()
 	}
 	else
 	{
-		setWindowTitle(filename);
+		setWindowTitle(title_tmp);
 		return OPEN(filename);
 	}
 }
@@ -61,7 +62,6 @@ bool Notepad::OPEN(const QString FILE_NAME)
 	QString text = fin.readAll();
 	ui.textEdit->setText(text);
 	curFile = QFileInfo(FILE_NAME).canonicalFilePath();
-
 	fp.close();
 	return true;
 }
@@ -119,7 +119,6 @@ void Notepad::assembler_called()
 	curResult = QString::fromStdString(str);
 	DISPLAY(QString::fromStdString(str));
 }
-
 void Notepad::dissembler_called()
 {
 	save_called();
@@ -129,7 +128,6 @@ void Notepad::dissembler_called()
 	curResult = QString::fromStdString(str);
 	DISPLAY(QString::fromStdString(str));
 }
-
 bool Notepad::DISPLAY(const QString FILE_NAME)
 {
 	std::string line = FILE_NAME.toStdString();
@@ -164,6 +162,7 @@ void Notepad::switch_called()
 	}
 	return;
 }
+
 void Notepad::change_fontsize_edit()
 {
 	ui.textEdit->setFont(QFont(tr("Consolas"), qint32(ui.size_edit->value())));
@@ -172,6 +171,7 @@ void Notepad::change_fontsize_browser()
 {
 	ui.textBrowser->setFont(QFont(tr("Consolas"), qint32(ui.size_browser->value())));
 }
+
 void Notepad::export_bin_called()
 {
 	EXPORT('b');
@@ -227,6 +227,7 @@ void Notepad::EXPORT(const char type)
 		msg.exec();
 	}
 }
+
 void Notepad::compile_clicked()
 {
 	if (A_D_mode == true)
